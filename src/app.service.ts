@@ -5,8 +5,11 @@ var fs = require('fs');
 @Injectable()
 export class AppService {
   create(params, query) {
-    console.log("🚀 ~ file: app.service.ts:8 ~ AppService ~ create ~ query:", query)
-    fs.writeFile(query.name + ".json", JSON.stringify(params), function (err) {
+    let name = '';
+    Object.keys(query).forEach(key => {
+      name = query[key] + ".json";
+    })
+    fs.writeFile(name, JSON.stringify(params), function (err) {
       if (err) throw err;
       console.log('complete');
     }
@@ -14,7 +17,13 @@ export class AppService {
     return "complete";
   }
   async getHello(query) {
-    let data = JSON.parse(await readFile(query.name + ".json", "utf8"));
+    let name = '';
+    Object.keys(query).forEach(key => {
+      name = query[key] + ".json";
+
+
+    })
+    let data = JSON.parse(await readFile(name, "utf8"));
     return data;
   }
 }
