@@ -3,14 +3,19 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
   getHello(@Query() query: any) {
     return this.appService.getHello(query);
   }
+  @Get()
+  getNew(@Query('/supplier/requestData') query: any) {
+    return this.appService.getHello(query);
+  }
+
   @Post()
-  create(@Req() request: Request, @Query() query: any){
+  create(@Req() request: Request, @Query() query: any) {
     return this.appService.create(request.body, query)
   }
 }
