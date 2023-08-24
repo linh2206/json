@@ -9,8 +9,8 @@ export class AppController {
   getHello(@Query() query: any) {
     return this.appService.getHello(query);
   }
-  @Get()
-  getNew(@Query('/supplier/requestData') query: any) {
+  @Get('supplier/requestData')
+  getNew(@Query() query: any) {
     return this.appService.getHello(query);
   }
 
