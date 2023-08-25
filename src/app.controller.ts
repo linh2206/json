@@ -14,6 +14,11 @@ export class AppController {
     return this.appService.getHello(query);
   }
 
+  @Post('supplier/requestData')
+  createNew(@Req() request: Request, @Query() query: any) {
+    return this.appService.create(request.body, query)
+  }
+
   @Post()
   create(@Req() request: Request, @Query() query: any) {
     return this.appService.create(request.body, query)
